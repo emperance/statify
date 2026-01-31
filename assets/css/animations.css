@@ -1,0 +1,347 @@
+/* Animation Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
+    }
+}
+
+@keyframes borderGlow {
+
+    0%,
+    100% {
+        border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    50% {
+        border-color: rgba(212, 175, 55, 0.5);
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.animate-scale-in {
+    animation: fadeInScale 0.4s ease forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Staggered Animations */
+.stagger-1 {
+    animation-delay: 0.05s;
+}
+
+.stagger-2 {
+    animation-delay: 0.1s;
+}
+
+.stagger-3 {
+    animation-delay: 0.15s;
+}
+
+.stagger-4 {
+    animation-delay: 0.2s;
+}
+
+.stagger-5 {
+    animation-delay: 0.25s;
+}
+
+.stagger-6 {
+    animation-delay: 0.3s;
+}
+
+.stagger-7 {
+    animation-delay: 0.35s;
+}
+
+.stagger-8 {
+    animation-delay: 0.4s;
+}
+
+.stagger-9 {
+    animation-delay: 0.45s;
+}
+
+.stagger-10 {
+    animation-delay: 0.5s;
+}
+
+.stagger-11 {
+    animation-delay: 0.55s;
+}
+
+.stagger-12 {
+    animation-delay: 0.6s;
+}
+
+/* Header Animation */
+.header__title {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.header__subtitle {
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+/* Card Entry Animation */
+.result-card {
+    opacity: 0;
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Button Hover Effects */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+/* Glass Card Shine Effect */
+.glass-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 70%);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+    animation: shimmer 1.5s ease forwards;
+}
+
+/* Input Focus Animation */
+.data-input {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.data-input:focus {
+    animation: borderGlow 1.5s ease-in-out infinite;
+}
+
+/* Result Card Hover Animation */
+.result-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.result-card:hover .result-card__value {
+    animation: pulse 1s ease-in-out;
+}
+
+/* Loading State Animations */
+.loading .btn-primary {
+    pointer-events: none;
+}
+
+.loading .data-input {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Success Animation */
+@keyframes successPop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.result-card--success {
+    animation: successPop 0.3s ease;
+}
+
+/* Copied Tooltip Animation */
+@keyframes copiedFade {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+}
+
+.copied-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    animation: copiedFade 1.5s ease forwards;
+    pointer-events: none;
+}
+
+/* History Item Hover */
+.history-item {
+    transition: all 0.2s ease;
+}
+
+.history-item:hover {
+    transform: translateX(5px);
+}
+
+/* Page Load Animation */
+.main-content {
+    animation: fadeInUp 0.6s ease;
+}
+
+/* Responsive Animation Adjustments */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mobile-specific animations (lighter for performance) */
+@media (max-width: 480px) {
+    .glass-card::before {
+        display: none;
+    }
+
+    .result-card {
+        animation-duration: 0.3s;
+    }
+
+    .btn-primary::before {
+        display: none;
+    }
+}

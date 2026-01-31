@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Rising trend line chart -->
+  <polyline points="3,18 8,13 12,15 21,6"/>
+  <!-- Arrow head at end of line -->
+  <polyline points="17,6 21,6 21,10"/>
+  <!-- Chart base line -->
+  <line x1="3" y1="21" x2="21" y2="21"/>
+  <!-- Y-axis line -->
+  <line x1="3" y1="21" x2="3" y2="4"/>
+  <!-- Small tick marks on Y-axis -->
+  <line x1="2" y1="8" x2="4" y2="8"/>
+  <line x1="2" y1="14" x2="4" y2="14"/>
+</svg>

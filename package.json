@@ -1,0 +1,17 @@
+{
+  "name": "statify",
+  "version": "1.0.0",
+  "description": "Luxury glassmorphism statistical calculator with AI insights",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7",
+    "yahoo-finance2": "^3.13.0"
+  }
+}

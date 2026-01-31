@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description"
+        content="A luxury glassmorphism statistical calculator for mean, median, mode, standard deviation, quartiles, variance, and class width calculations.">
+    <meta name="keywords" content="statistics, calculator, mean, median, mode, standard deviation, variance, quartiles">
+    <meta name="author" content="Statistical Calculator">
+    <meta name="theme-color" content="#1a1a2e">
+
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Statify">
+    <meta name="application-name" content="Statify">
+    <meta name="msapplication-TileColor" content="#1a1a2e">
+    <meta name="msapplication-TileImage" content="assets/icons/icon-144x144.png">
+
+    <title>Statify | Luxury Glassmorphism</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="assets/icons/icon-512x512.png">
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/file-upload.css">
+    <link rel="stylesheet" href="assets/css/ai-insights.css">
+    <link rel="stylesheet" href="assets/css/ai-features.css">
+    <link rel="stylesheet" href="assets/css/voice.css">
+    <link rel="stylesheet" href="assets/css/ocr.css">
+    <link rel="stylesheet" href="assets/css/navigation.css">
+    <link rel="stylesheet" href="assets/css/wordle.css">
+    <link rel="stylesheet" href="assets/css/market-tracker.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/icon-72x72.png">
+</head>
+
+<body>
+    <!-- Main App Container -->
+    <div class="app-container">
+
+        <!-- ============================= -->
+        <!-- PAGE 1: STATISTICS CALCULATOR -->
+        <!-- ============================= -->
+        <div class="page active" id="calculator-page">
+            <div class="container">
+                <!-- Header Section -->
+                <header class="header">
+                    <div class="header-content">
+                        <div class="header-left">
+                            <h1 class="header__title">Statify</h1>
+                            <p class="header__subtitle">A practical solution for statistical calculations</p>
+                        </div>
+                        <div id="theme-selector-container"></div>
+                    </div>
+                </header>
+
+                <!-- Main Content -->
+                <main class="main-content">
+                    <!-- Input Card -->
+                    <div class="glass-card input-section">
+                        <!-- Input Method Tabs -->
+                        <div class="input-tabs">
+                            <button type="button" class="input-tab active" data-tab="manual">
+                                Manual Entry
+                            </button>
+                            <button type="button" class="input-tab" data-tab="voice">
+                                Voice
+                            </button>
+                            <button type="button" class="input-tab" data-tab="camera">
+                                Scan
+                            </button>
+                            <button type="button" class="input-tab" data-tab="upload">
+                                Upload
+                            </button>
+                            <button type="button" class="input-tab" data-tab="ai-text">
+                                AI Text
+                            </button>
+                            <button type="button" class="input-tab" data-tab="samples">
+                                Samples
+                            </button>
+                        </div>
+
+                        <!-- Manual Entry Tab -->
+                        <div class="tab-content active" id="tab-manual">
+                            <label class="input-label" for="dataInput">
+                                Enter your data (comma, space, or newline separated)
+                            </label>
+                            <textarea id="dataInput" class="data-input"
+                                placeholder="Example: 12, 15, 18, 22, 25, 28, 30, 35, 40&#10;&#10;Or paste your dataset here..."
+                                aria-label="Data input field" spellcheck="false"></textarea>
+                        </div>
+
+                        <!-- Voice Input Tab -->
+                        <div class="tab-content" id="tab-voice">
+                            <!-- Language Selector -->
+                            <div class="voice-language-selector">
+                                <span class="lang-label">Language:</span>
+                                <button type="button" class="lang-btn active" data-lang="en-US">
+                                    EN
+                                </button>
+                                <button type="button" class="lang-btn" data-lang="id-ID">
+                                    ID
+                                </button>
+                            </div>
+
+                            <div class="voice-controls">
+                                <button type="button" id="start-voice-btn" class="voice-btn">
+                                    Start Speaking
+                                </button>
+                                <button type="button" id="stop-voice-btn" class="voice-btn" disabled>
+                                    Stop
+                                </button>
+                                <button type="button" id="clear-voice-btn" class="voice-btn">
+                                    Clear
+                                </button>
+                            </div>
+
+                            <div id="listening-indicator" class="listening-indicator">
+                                <span class="listening-pulse"></span>
+                                Listening...
+                            </div>
+
+                            <div id="voice-transcript" class="voice-transcript">
+                                Your spoken numbers will appear here...
+                            </div>
+
+                            <div class="voice-instructions">
+                                <p><strong>How to use:</strong></p>
+                                <ul>
+                                    <li>Select your language above</li>
+                                    <li>Click "Start Speaking" and say your numbers clearly</li>
+                                    <li>EN: Say "fifteen point three" or "calculate" when done</li>
+                                    <li>ID: Say "lima koma tiga" atau "hitung" saat selesai</li>
+                                </ul>
+                            </div>
+
+                            <div id="voice-data-preview" class="voice-data-preview"></div>
+
+                            <button type="button" id="use-voice-btn" class="btn btn-primary" style="margin-top: 1rem;">
+                                ✓ Use These Numbers
+                            </button>
+                        </div>
+
+                        <!-- Camera/OCR Input Tab -->
+                        <div class="tab-content" id="tab-camera">
+                            <div class="camera-controls">
+                                <button type="button" id="start-camera-btn" class="camera-btn">
+                                    Open Camera
+                                </button>
+                                <button type="button" id="upload-image-btn" class="camera-btn">
+                                    Upload Image
+                                </button>
+                                <input type="file" id="image-upload-input" accept="image/*" style="display: none;">
+                            </div>
+
+                            <div id="camera-preview" class="camera-preview" style="display: none;">
+                                <video id="camera-video" autoplay playsinline></video>
+                                <canvas id="camera-canvas" style="display: none;"></canvas>
+
+                                <div class="camera-overlay">
+                                    <div class="scan-frame"></div>
+                                    <p class="scan-instruction">Position numbers within the frame</p>
+                                </div>
+
+                                <div class="camera-actions">
+                                    <button type="button" id="capture-btn" class="btn-capture">
+                                        Capture
+                                    </button>
+                                    <button type="button" id="close-camera-btn" class="btn-close-camera">
+                                        ✕ Close
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="ocr-processing" class="ocr-processing" style="display: none;">
+                                <div class="processing-animation">
+                                    <div class="ocr-spinner"></div>
+                                    <p>Reading numbers from image...</p>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="ocr-progress"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="ocr-result" class="ocr-result"></div>
+
+                            <div class="ocr-instructions">
+                                <p><strong>Tips for best results:</strong></p>
+                                <ul>
+                                    <li>Ensure good lighting and clear numbers</li>
+                                    <li>Works best with printed or neat handwriting</li>
+                                    <li>Keep the camera steady</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Upload Tab (CSV & PDF) -->
+                        <div class="tab-content" id="tab-upload">
+                            <label class="input-label">
+                                Upload a CSV or PDF file with numeric data
+                            </label>
+                            <div class="upload-options">
+                                <label class="upload-box" for="csvFileInput">
+                                    <div class="upload-icon">CSV</div>
+                                    <div class="upload-text">
+                                        <strong>Upload CSV</strong>
+                                        <span>Comma-separated values</span>
+                                    </div>
+                                    <input type="file" id="csvFileInput" accept=".csv,.txt" style="display: none;">
+                                </label>
+
+                                <label class="upload-box" for="pdf-upload">
+                                    <div class="upload-icon">PDF</div>
+                                    <div class="upload-text">
+                                        <strong>Upload PDF</strong>
+                                        <span>Extract numbers from PDF</span>
+                                    </div>
+                                    <input type="file" id="pdf-upload" accept=".pdf" style="display: none;">
+                                </label>
+                            </div>
+
+                            <div id="csv-file-preview" class="file-preview"></div>
+                            <div id="pdf-file-preview" class="file-preview"></div>
+                        </div>
+
+                        <!-- AI Text Extraction Tab -->
+                        <div class="tab-content" id="tab-ai-text">
+                            <div class="ai-text-container">
+                                <label class="input-label">
+                                    Paste text containing numbers (AI will extract them)
+                                </label>
+                                <textarea id="ai-text-input" class="ai-text-input" placeholder="Example: We surveyed 45 students on Monday, 67 on Tuesday, and 53 on Wednesday. The average score was 78.5 out of 100.
+
+Paste any paragraph, report, or story containing numbers..." spellcheck="false"></textarea>
+
+                                <div class="ai-options">
+                                    <label class="ai-option-label">
+                                        <input type="checkbox" id="ai-categorize">
+                                        Categorize numbers by context
+                                    </label>
+                                    <label class="ai-option-label">
+                                        <input type="checkbox" id="ai-remove-duplicates">
+                                        Remove duplicates
+                                    </label>
+                                </div>
+
+                                <div class="ai-actions">
+                                    <button type="button" id="ai-extract-btn">Extract Numbers</button>
+                                    <button type="button" id="use-extracted-btn">✓ Use These Numbers</button>
+                                    <button type="button" id="clear-extract-btn">Clear</button>
+                                </div>
+
+                                <div id="ai-extraction-result"></div>
+                            </div>
+                        </div>
+
+                        <!-- Sample Data Tab -->
+                        <div class="tab-content" id="tab-samples">
+                            <label class="input-label">
+                                Choose a sample dataset to analyze
+                            </label>
+                            <div class="sample-grid">
+                                <button type="button" class="sample-btn" data-sample="test-scores">
+                                    Test Scores
+                                    <span class="sample-desc">25 student exam results</span>
+                                </button>
+                                <button type="button" class="sample-btn" data-sample="heights">
+                                    Heights
+                                    <span class="sample-desc">20 adult heights (cm)</span>
+                                </button>
+                                <button type="button" class="sample-btn" data-sample="temperatures">
+                                    Temperatures
+                                    <span class="sample-desc">30 daily temperatures</span>
+                                </button>
+                                <button type="button" class="sample-btn" data-sample="sales">
+                                    Sales Data
+                                    <span class="sample-desc">15 monthly sales figures</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Class Width Input -->
+                        <div class="class-input-group">
+                            <label class="input-label" for="numClasses">
+                                Number of classes:
+                            </label>
+                            <input type="number" id="numClasses" class="class-input" value="5" min="2" max="20"
+                                aria-label="Number of classes for class width calculation">
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="button" id="calculateBtn" class="btn btn-primary">
+                                Calculate
+                            </button>
+                            <button type="button" id="clearBtn" class="btn btn-secondary">
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Section -->
+                    <section id="resultsSection" class="results-section hidden" aria-live="polite">
+                        <div class="results-header">
+                            <h2 class="results-section__title">Results</h2>
+                            <div class="export-buttons">
+                                <button type="button" id="exportCsvBtn" class="btn-export" title="Export as CSV">
+                                    Export CSV
+                                </button>
+                                <button type="button" id="printBtn" class="btn-export" title="Print Results">
+                                    Print
+                                </button>
+                            </div>
+                        </div>
+                        <div id="resultsGrid" class="results-grid">
+                            <!-- Results will be dynamically inserted here -->
+                        </div>
+
+                        <!-- Charts Section -->
+                        <div class="charts-section">
+                            <h3 class="charts-title">Visualizations</h3>
+                            <div class="charts-grid">
+                                <div class="chart-card glass-card">
+                                    <h4 class="chart-label">Box Plot (Quartiles)</h4>
+                                    <canvas id="boxPlotChart"></canvas>
+                                </div>
+                                <div class="chart-card glass-card">
+                                    <h4 class="chart-label">Histogram (Distribution)</h4>
+                                    <canvas id="histogramChart"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- AI Insights Section -->
+                            <div id="ai-insights" class="ai-insights-container"></div>
+                        </div>
+
+                        <!-- Natural Language Query Panel -->
+                        <div id="nl-query-panel" class="nl-query-panel">
+                            <div class="nl-query-header">
+                                <h3>Ask AI about your data</h3>
+                                <button type="button" id="nl-clear-btn">Clear Chat</button>
+                            </div>
+                            <div id="nl-chat-messages">
+                                <div class="chat-welcome">
+                                    <span class="welcome-icon">?</span>
+                                    <p>Ask me anything about your data!</p>
+                                    <div class="suggested-questions">
+                                        <button class="suggested-question"
+                                            data-question="What is the average of my data?">What's the average?</button>
+                                        <button class="suggested-question"
+                                            data-question="Are there any outliers in my data?">Any outliers?</button>
+                                        <button class="suggested-question"
+                                            data-question="Is my data normally distributed?">Is
+                                            it normally distributed?</button>
+                                        <button class="suggested-question" data-question="Summarize my data">Summarize
+                                            my
+                                            data</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nl-query-input-container">
+                                <input type="text" id="nl-query-input" placeholder="Ask a question about your data...">
+                                <button type="button" id="nl-send-btn">➤</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- History Section -->
+                    <section id="historySection" class="history-section hidden">
+                        <h3 class="history-section__title">Recent Calculations</h3>
+                        <div id="historyList" class="history-list">
+                            <!-- History items will be dynamically inserted here -->
+                        </div>
+                    </section>
+                </main>
+
+                <!-- Footer -->
+                <footer class="footer">
+                    <p>Statify © 2026</p>
+                </footer>
+
+                <!-- Bottom padding for navigation bar -->
+                <div class="bottom-nav-spacer"></div>
+            </div>
+        </div>
+
+        <!-- ===================== -->
+        <!-- PAGE 2: WORDLE GAME   -->
+        <!-- ===================== -->
+        <div class="page" id="wordle-page">
+            <div class="wordle-container">
+                <header class="wordle-header">
+                    <h1>Wordle Game</h1>
+                    <div class="wordle-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="games-played">0</span>
+                            <span class="stat-label">Played</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="win-percentage">0</span>
+                            <span class="stat-label">Win %</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="current-streak">0</span>
+                            <span class="stat-label">Streak</span>
+                        </div>
+                    </div>
+                </header>
+
+                <main class="wordle-main">
+                    <!-- Game Board -->
+                    <div class="game-board" id="game-board">
+                        <!-- 6 rows, 5 letters each -->
+                        <div class="board-row">
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                        </div>
+                        <div class="board-row">
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                        </div>
+                        <div class="board-row">
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                        </div>
+                        <div class="board-row">
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                        </div>
+                        <div class="board-row">
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                        </div>
+                        <div class="board-row">
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                            <div class="letter-box"></div>
+                        </div>
+                    </div>
+
+                    <!-- Game Message -->
+                    <div class="game-message" id="game-message"></div>
+
+                    <!-- Keyboard -->
+                    <div class="keyboard" id="keyboard">
+                        <div class="keyboard-row">
+                            <button class="key" data-key="Q">Q</button>
+                            <button class="key" data-key="W">W</button>
+                            <button class="key" data-key="E">E</button>
+                            <button class="key" data-key="R">R</button>
+                            <button class="key" data-key="T">T</button>
+                            <button class="key" data-key="Y">Y</button>
+                            <button class="key" data-key="U">U</button>
+                            <button class="key" data-key="I">I</button>
+                            <button class="key" data-key="O">O</button>
+                            <button class="key" data-key="P">P</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key" data-key="A">A</button>
+                            <button class="key" data-key="S">S</button>
+                            <button class="key" data-key="D">D</button>
+                            <button class="key" data-key="F">F</button>
+                            <button class="key" data-key="G">G</button>
+                            <button class="key" data-key="H">H</button>
+                            <button class="key" data-key="J">J</button>
+                            <button class="key" data-key="K">K</button>
+                            <button class="key" data-key="L">L</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key key-large" data-key="ENTER">ENTER</button>
+                            <button class="key" data-key="Z">Z</button>
+                            <button class="key" data-key="X">X</button>
+                            <button class="key" data-key="C">C</button>
+                            <button class="key" data-key="V">V</button>
+                            <button class="key" data-key="B">B</button>
+                            <button class="key" data-key="N">N</button>
+                            <button class="key" data-key="M">M</button>
+                            <button class="key key-large" data-key="BACKSPACE">⌫</button>
+                        </div>
+                    </div>
+
+                    <!-- New Game Button -->
+                    <button class="btn-new-game" id="new-game-btn">New Game</button>
+                </main>
+
+                <!-- Bottom padding for navigation bar -->
+                <div class="bottom-nav-spacer"></div>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- PAGE 3: MARKET TRACKER          -->
+        <!-- =============================== -->
+        <div class="page" id="market-page">
+            <div class="market-container">
+                <header class="market-header">
+                    <h1>Market Tracker</h1>
+                    <p>Track stocks & crypto in real-time</p>
+                </header>
+
+                <!-- Market Tabs -->
+                <div class="market-tabs">
+                    <button class="tab-btn active" data-tab="stocks">Stocks</button>
+                    <button class="tab-btn" data-tab="crypto">Crypto</button>
+                    <button class="tab-btn" data-tab="watchlist">Watchlist</button>
+                </div>
+
+                <!-- Stocks Tab -->
+                <div class="tab-content active" id="stocks-tab">
+                    <!-- Market Switcher -->
+                    <div class="market-switcher">
+                        <button class="market-btn active" data-market="idx">
+                            IDX
+                        </button>
+                        <button class="market-btn" data-market="us">
+                            US
+                        </button>
+                    </div>
+
+
+
+                    <div class="market-search">
+                        <input type="text" id="stock-search" placeholder="Search stocks (e.g., BBCA, AAPL)...">
+                        <button class="search-btn" id="stock-search-btn">Search</button>
+                    </div>
+
+
+
+                    <div class="market-toolbar">
+                        <button class="toolbar-btn" id="refresh-all-btn">Refresh</button>
+                    </div>
+
+                    <div class="cards-container" id="stocks-container">
+                        <div class="loading-placeholder">
+                            <div class="spinner"></div>
+                            <p>Loading stocks...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crypto Tab -->
+                <div class="tab-content" id="crypto-tab">
+                    <div class="market-search">
+                        <input type="text" id="crypto-search" placeholder="Enter crypto name (e.g., bitcoin)">
+                        <button class="search-btn" id="crypto-search-btn">Search</button>
+                    </div>
+
+
+
+                    <div class="cards-container" id="crypto-container">
+                        <div class="loading-placeholder">
+                            <div class="spinner"></div>
+                            <p>Loading crypto...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watchlist Tab -->
+                <div class="tab-content" id="watchlist-tab">
+                    <div class="market-toolbar">
+                        <button class="toolbar-btn" id="clear-watchlist-btn">Clear All</button>
+                    </div>
+
+                    <div class="cards-container" id="watchlist-container">
+                        <div class="empty-state">
+                            <div class="empty-icon">—</div>
+                            <h3>Your watchlist is empty</h3>
+                            <p>Add stocks, crypto, or IDX by clicking the star icon on any card</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="bottom-nav-spacer"></div>
+            </div>
+        </div>
+
+        <!-- ========================= -->
+        <!-- BOTTOM NAVIGATION BAR     -->
+        <!-- ========================= -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-page="calculator-page">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                        <rect x="6" y="4" width="12" height="4" rx="1" />
+                        <circle cx="8" cy="11" r="1" />
+                        <circle cx="12" cy="11" r="1" />
+                        <circle cx="16" cy="11" r="1" />
+                        <circle cx="8" cy="15" r="1" />
+                        <circle cx="12" cy="15" r="1" />
+                        <circle cx="16" cy="15" r="1" />
+                        <circle cx="8" cy="19" r="1" />
+                        <circle cx="12" cy="19" r="1" />
+                        <circle cx="16" cy="19" r="1" />
+                    </svg>
+                </div>
+            </button>
+            <button class="nav-item" data-page="wordle-page">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="2" y="9" width="4" height="4" rx="0.5" />
+                        <rect x="7" y="9" width="4" height="4" rx="0.5" />
+                        <rect x="12" y="9" width="4" height="4" rx="0.5" />
+                        <rect x="17" y="9" width="4" height="4" rx="0.5" />
+                        <line x1="3" y1="11" x2="5" y2="11" />
+                        <line x1="8" y1="11" x2="10" y2="11" />
+                        <line x1="13" y1="11" x2="15" y2="11" />
+                        <line x1="18" y1="11" x2="20" y2="11" />
+                        <rect x="7" y="14.5" width="4" height="4" rx="0.5" opacity="0.4" />
+                        <rect x="12" y="14.5" width="4" height="4" rx="0.5" opacity="0.4" />
+                    </svg>
+                </div>
+            </button>
+            <button class="nav-item" data-page="market-page">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="3,18 8,13 12,15 21,6" />
+                        <polyline points="17,6 21,6 21,10" />
+                        <line x1="3" y1="21" x2="21" y2="21" />
+                        <line x1="3" y1="21" x2="3" y2="4" />
+                        <line x1="2" y1="8" x2="4" y2="8" />
+                        <line x1="2" y1="14" x2="4" y2="14" />
+                    </svg>
+                </div>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container" aria-live="assertive"></div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="assets/js/theme-config.js"></script>
+    <script src="assets/js/theme-manager.js"></script>
+    <script src="assets/js/calculator.js"></script>
+    <script src="assets/js/charts.js"></script>
+    <script src="assets/js/ai-insights.js"></script>
+    <script src="assets/js/voice-input.js"></script>
+    <script src="assets/js/ocr-input.js"></script>
+    <script src="assets/js/pdf-processor.js"></script>
+    <script src="assets/js/ai-data-extractor.js"></script>
+    <script src="assets/js/nl-query-handler.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/wordle.js"></script>
+    <script src="assets/js/market-tracker.js?v=2"></script>
+    <script src="assets/js/app.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        // Register service worker for PWA
+        // TEMPORARY: Unregister existing service workers to fix cache issues
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                for (let registration of registrations) {
+                    registration.unregister();
+                    console.log('ServiceWorker unregistered');
+                }
+            });
+            caches.keys().then(names => {
+                for (let name of names) caches.delete(name);
+            });
+        }
+
+        /* 
+        // Re-enable this block later once development is stable
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    ...
+            });
+        }
+        */
+
+        // PWA Install prompt handling
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('📱 App can be installed');
+        });
+    </script>
+</body>
+
+</html>
