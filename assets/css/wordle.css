@@ -286,141 +286,144 @@
 /* ==================== MOBILE STYLES ==================== */
 
 /* Mobile adjustments - improved reachability and touch targets */
+/* Mobile adjustments - Perfect Single Screen Fit */
 @media (max-width: 480px) {
     .wordle-container {
-        padding: 15px;
-        padding-bottom: 90px;
-        /* Allow natural scrolling if content exceeds viewport */
-        min-height: calc(100vh - 60px);
-        min-height: calc(100dvh - 60px);
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
-
-    .wordle-header {
-        padding: 10px 0;
-        margin-bottom: 10px;
-    }
-
-    .wordle-header h1 {
-        font-size: 1.5rem;
-        margin: 0 0 8px 0;
-    }
-
-    .wordle-stats {
-        gap: 25px;
-    }
-
-    .stat-number {
-        font-size: 20px;
-    }
-
-    .stat-label {
-        font-size: 11px;
-    }
-
-    .wordle-main {
-        padding: 5px 0;
-        flex: 1;
+        padding: 10px;
+        /* Ensure bottom padding clears the nav bar (70px) plus a small gap */
+        padding-bottom: 80px;
+        /* Force container to take exactly viewport height */
+        height: 100vh;
+        height: 100dvh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 15px;
-        /* Add breathing room between board and keyboard */
+        box-sizing: border-box;
+        overflow-y: auto;
+        /* Allow scroll only if absolutely needed on tiny screens */
+    }
+
+    .wordle-header {
+        padding: 5px 0;
+        margin-bottom: 5px;
+        flex-shrink: 0;
+        border-bottom: none;
+    }
+
+    .wordle-header h1 {
+        font-size: 1.2rem;
+        margin: 0 0 2px 0;
+    }
+
+    .wordle-stats {
+        gap: 20px;
+    }
+
+    .stat-number {
+        font-size: 16px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+        margin-top: 0;
+    }
+
+    .wordle-main {
+        padding: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        /* Distribute space evenly */
+        min-height: 0;
     }
 
     .game-board {
         margin: 0 auto;
-        gap: 6px;
+        gap: 5px;
+        flex-shrink: 1;
+        /* Allow board to shrink slightly if needed */
     }
 
     .board-row {
-        gap: 6px;
+        gap: 5px;
     }
 
-    /* Larger boxes for better visibility */
+    /* Tuned box size: slightly smaller than 54px to ensure fit */
     .letter-box {
-        width: 54px;
-        height: 54px;
-        font-size: 28px;
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
         border-width: 2px;
     }
 
     .game-message {
-        min-height: 28px;
-        margin: 5px 0;
-        font-size: 15px;
+        min-height: 24px;
+        margin: 2px 0;
+        font-size: 14px;
+        flex-shrink: 0;
     }
 
     .keyboard {
         margin: 0 auto;
         width: 100%;
-        max-width: 100%;
+        flex-shrink: 0;
     }
 
     .keyboard-row {
-        gap: 4px;
-        margin-bottom: 6px;
+        gap: 3px;
+        margin-bottom: 4px;
     }
 
-    /* Larger touch targets for keys */
+    /* Tuned key size: 50px height is good compromise for touch + fit */
     .key {
-        min-width: 32px;
-        height: 54px;
-        /* Taller keys for easier typing */
+        min-width: 30px;
+        height: 50px;
         font-size: 13px;
-        padding: 0 5px;
+        padding: 0 3px;
         border-radius: 4px;
         flex: 1;
-        /* Distribute space evenly */
         max-width: 10%;
-        /* Prevent keys from getting too wide */
     }
 
     .key-large {
-        min-width: 48px;
-        max-width: 15%;
+        min-width: 45px;
         font-size: 11px;
     }
 
+    /* Hide new game button if playing to save space, or make it small */
     .btn-new-game {
-        margin-top: 15px;
-        padding: 12px 30px;
-        font-size: 15px;
+        margin-top: 5px;
+        padding: 8px 20px;
+        font-size: 13px;
     }
 }
 
-/* Small phones (iPhone SE, etc) */
+/* Small phones (iPhone SE, etc) - Extra condensing */
 @media (max-width: 380px) {
     .wordle-container {
-        padding: 10px;
+        padding: 5px;
+        padding-bottom: 75px;
     }
 
     .letter-box {
-        width: 46px;
-        height: 46px;
-        font-size: 24px;
-        border-width: 1.5px;
-    }
-
-    .game-board {
-        gap: 5px;
-    }
-
-    .board-row {
-        gap: 5px;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
     }
 
     .key {
-        height: 48px;
+        height: 44px;
+        /* Smaller keys for small screens */
         font-size: 12px;
-        padding: 0 2px;
     }
 
     .wordle-header h1 {
-        font-size: 1.3rem;
+        font-size: 1rem;
+    }
+
+    .stat-number {
+        font-size: 14px;
     }
 }
 
