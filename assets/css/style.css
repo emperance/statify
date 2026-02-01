@@ -831,6 +831,26 @@ h6 {
     border-color: var(--accent-gold);
 }
 
+/* Mobile Optimizations for Calculator Tabs */
+@media (max-width: 480px) {
+    .input-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .input-tab {
+        width: 100%;
+        min-width: 0;
+        padding: 8px 4px;
+        font-size: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
 /* ============================================
    PRINT STYLES
    ============================================ */
