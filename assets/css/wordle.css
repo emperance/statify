@@ -299,8 +299,13 @@
         flex-direction: column;
         justify-content: space-between;
         box-sizing: border-box;
-        overflow-y: auto;
-        /* Allow scroll only if absolutely needed on tiny screens */
+        overflow: hidden;
+        /* Disable scrolling as strictly requested */
+    }
+
+    /* Hide redundant spacer since we use padding-bottom */
+    .wordle-container .bottom-nav-spacer {
+        display: none;
     }
 
     .wordle-header {
@@ -392,10 +397,15 @@
     }
 
     /* Hide new game button if playing to save space, or make it small */
+    /* Hide new game button if playing to save space, or make it small */
     .btn-new-game {
-        margin-top: 5px;
-        padding: 8px 20px;
-        font-size: 13px;
+        margin-top: 10px;
+        padding: 12px 24px;
+        /* Larger touch target */
+        font-size: 14px;
+        position: relative;
+        z-index: 10;
+        /* Ensure it's clickable */
     }
 }
 
@@ -535,14 +545,4 @@
     }
 
     .game-message {
-        min-height: 30px;
-        font-size: 16px;
-        margin: 10px 0;
-    }
-
-    .btn-new-game {
-        padding: 12px 35px;
-        font-size: 15px;
-        margin-top: 10px;
-    }
-}
+ 
