@@ -559,6 +559,10 @@ function serveStaticFile(req, res, pathname) {
             res.setHeader('Cache-Control', 'public, max-age=3600');
         }
 
+        // Add Permissions-Policy to allow Camera and Mic access (critical for PWA/WebViews)
+        res.setHeader('Permissions-Policy', 'camera=*, microphone=*, geolocation=*');
+
+
         res.writeHead(200, { 'Content-Type': contentType });
         res.end(data);
     });
