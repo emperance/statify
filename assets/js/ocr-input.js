@@ -58,6 +58,17 @@ class OCRInputHandler {
      * Start camera stream
      */
     async startCamera() {
+        // Check for secure context
+        if (!window.isSecureContext && window.location.hostname !== 'localhost') {
+            console.error('Camera access requires a secure context (HTTPS)');
+            if (typeof App !== 'undefined' && App.showToast) {
+                App.showToast('Camera requires HTTPS connection', 'error');
+            } else {
+                alert('Camera access requires a secure connection (HTTPS).\nPlease use a secure URL (https://).');
+            }
+            return;
+        }
+
         try {
             this.video = document.getElementById('camera-video');
             this.canvas = document.getElementById('camera-canvas');
