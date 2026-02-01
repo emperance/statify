@@ -21,6 +21,19 @@ class VoiceInputHandler {
     initializeRecognition() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+
+        // Check for secure context
+        if (!window.isSecureContext && window.location.hostname !== 'localhost') {
+            console.error('Voice input requires a secure context (HTTPS)');
+            if (typeof App !== 'undefined' && App.showToast) {
+                App.showToast('Voice input requires HTTPS', 'error');
+            } else {
+                alert('Voice input requires a secure connection (HTTPS).\nPlease use a secure URL (https://).');
+            }
+            this.showUnsupportedMessage();
+            return;
+        }
+
         if (!SpeechRecognition) {
             console.warn('Voice input not supported in this browser');
             this.showUnsupportedMessage();
