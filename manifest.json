@@ -9,6 +9,10 @@
     "orientation": "portrait-primary",
     "scope": "/",
     "lang": "en",
+    "permissions": [
+        "microphone",
+        "camera"
+    ],
     "categories": [
         "utilities",
         "productivity",
